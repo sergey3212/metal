@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glitch Text Effect v2 — Демонстрация</title>
+    
+    <!-- Подключаем эффект -->
+    <link rel="stylesheet" href="glitch.css">
+    
+    <style>
+        /* Базовые стили для демонстрации */
+        :root {
+            --color-primary: #ff6b00;
+            --color-dark: #1a1a2e;
+            --color-light: #f3f4f6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: var(--color-dark);
+            color: var(--color-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .demo-section {
+            text-align: center;
+        }
+        
+        .demo-label {
+            display: block;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Разные размеры шрифта для демонстрации */
+        .glitch-large {
+            font-size: 64px;
+            font-weight: 800;
+        }
+        
+        .glitch-medium {
+            font-size: 32px;
+            font-weight: 600;
+        }
+        
+        .glitch-small {
+            font-size: 18px;
+            font-weight: 400;
+        }
+        
+        /* Инфо-блок */
+        .info {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .info h3 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+        
+        .info ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .info li {
+            margin-bottom: 5px;
+        }
+        
+        .info code {
+            background: rgba(255, 107, 0, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="info">
+        <h3>🎬 Glitch Effect v2</h3>
+        <p>Наблюдайте за эффектом:</p>
+        <ul>
+            <li>Текст подёргивается <code>3 раза за 5 секунд</code></li>
+            <li>Во время рывков случайные слова <code>увеличиваются/уменьшаются на 25%</code></li>
+            <li>Оранжевый и тёмно-серый слои <code>мерцают</code></li>
+        </ul>
+    </div>
+    
+    <!-- Демонстрация 1: Крупный заголовок (3 слова) -->
+    <div class="demo-section">
+        <span class="demo-label">3 слова (64px)</span>
+        <div class="glitch-wrapper">
+            <span class="glitch glitch-large" data-text="GLITCH EFFECT DEMO">
+                <span class="glitch-word">GLITCH</span>
+                <span class="glitch-word">EFFECT</span>
+                <span class="glitch-word">DEMO</span>
+            </span>
+        </div>
+    </div>
+    
+    <!-- Демонстрация 2: Кириллица (3 слова) -->
+    <div class="demo-section">
+        <span class="demo-label">Кириллица (32px)</span>
+        <div class="glitch-wrapper">
+            <span class="glitch glitch-medium" data-text="Изделия из металла">
+                <span class="glitch-word">Изделия</span>
+                <span class="glitch-word">из</span>
+                <span class="glitch-word">металла</span>
+            </span>
+        </div>
+    </div>
+    
+    <!-- Демонстрация 3: Длинный текст (4 слова) -->
+    <div class="demo-section">
+        <span class="demo-label">4 слова (24px)</span>
+        <div class="glitch-wrapper">
+            <span class="glitch" style="font-size: 24px;" data-text="Быстро качественно надёжно">
+                <span class="glitch-word">Быстро</span>
+                <span class="glitch-word">качественно</span>
+                <span class="glitch-word">надёжно</span>
+            </span>
+        </div>
+    </div>
+    
+    <!-- Демонстрация 4: Два слова -->
+    <div class="demo-section">
+        <span class="demo-label">2 слова (28px)</span>
+        <div class="glitch-wrapper">
+            <span class="glitch" style="font-size: 28px;" data-text="Твой текст">
+                <span class="glitch-word">Твой</span>
+                <span class="glitch-word">текст</span>
+            </span>
+        </div>
+    </div>
+    
+    <!-- Демонстрация 5: Одно слово -->
+    <div class="demo-section">
+        <span class="demo-label">1 слово (36px)</span>
+        <div class="glitch-wrapper">
+            <span class="glitch" style="font-size: 36px;" data-text="МЕТАЛЛ">
+                <span class="glitch-word">МЕТАЛЛ</span>
+            </span>
+        </div>
+    </div>
+    
+    <!-- Подключаем JS -->
+    <script src="glitch-words.js"></script>
+    
+</body>
+</html>

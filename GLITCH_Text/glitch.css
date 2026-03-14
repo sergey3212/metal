@@ -1,0 +1,226 @@
+/* ===================================
+   Glitch Effect для текста с эффектом слов
+   ===================================
+   
+   Описание: Эффект глитча с подергиванием текста и изменением
+   размера отдельных слов во время рывков.
+   
+   Использование:
+   1. Подключите этот CSS файл
+   2. Оберните текст в структуру:
+   
+   <div class="glitch-wrapper">
+       <span class="glitch" data-text="ВАШ ТЕКСТ">
+           <span class="glitch-word">СЛОВО1</span>
+           <span class="glitch-word">СЛОВО2</span>
+       </span>
+   </div>
+   
+   3. Инициализируйте JS (см. glitch-words.js)
+   =================================== */
+
+.glitch-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch {
+    position: relative;
+    color: var(--color-primary);
+    font-size: inherit;
+    font-weight: 400;
+    font-family: inherit;
+    text-transform: uppercase;
+    line-height: inherit;
+    display: inline-flex;
+    gap: 0.3em;
+    align-items: center;
+    animation: glitch-shake 5s infinite;
+}
+
+.glitch-word {
+    display: inline-block;
+    white-space: nowrap;
+    transform-origin: center center;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Оранжевый слой смещения */
+.glitch::before {
+    color: var(--color-primary);
+    z-index: -1;
+    animation: glitch-anim-1 0.5s infinite linear;
+}
+
+/* Тёмно-серый слой смещения */
+.glitch::after {
+    color: var(--color-dark);
+    z-index: -2;
+    animation: glitch-anim-2 0.5s infinite linear;
+}
+
+/* ===================================
+   АНИМАЦИЯ ПОДЁРГИВАНИЯ ОСНОВНОГО ТЕКСТА
+   Раскладка на 5 секунд:
+   
+   | Время      | % ключа  | Описание                     |
+   |------------|----------|------------------------------|
+   | 0–0.75 сек | 0–15%    | Текст стоит на месте         |
+   | 0.75–1.05  | 15–21%   | 1-я серия рывков (4 движения)|
+   | 1.05–2.5   | 21–50%   | Текст стоит на месте         |
+   | 2.5–2.8    | 50–56%   | 2-я серия рывков (3 движения)|
+   | 2.8–3.75   | 56–75%   | Текст стоит на месте         |
+   | 3.75–3.975 | 75–79.5% | 3-я серия рывков (2 движения)|
+   | 3.975–5    | 79.5–100%| Текст стоит на месте         |
+   =================================== */
+@keyframes glitch-shake {
+    0%, 15%, 100% {
+        transform: translate(0, 0);
+    }
+    /* 1-я серия: 4 быстрых рывка (0.75–1.05 сек) */
+    16.5% {
+        transform: translate(-18px, 6px);
+    }
+    18% {
+        transform: translate(18px, -6px);
+    }
+    19.5% {
+        transform: translate(-18px, -6px);
+    }
+    21% {
+        transform: translate(18px, 6px);
+    }
+    23% {
+        transform: translate(0, 0);
+    }
+    /* 2-я серия: 3 рывка (2.5–2.8 сек) */
+    50% {
+        transform: translate(0, 0);
+    }
+    51.5% {
+        transform: translate(-12px, 12px);
+    }
+    53% {
+        transform: translate(12px, -12px);
+    }
+    54.5% {
+        transform: translate(-12px, -10px);
+    }
+    56% {
+        transform: translate(0, 0);
+    }
+    /* 3-я серия: 2 рывка (3.75–3.975 сек) */
+    75% {
+        transform: translate(0, 0);
+    }
+    76.5% {
+        transform: translate(-14px, -10px);
+    }
+    78% {
+        transform: translate(14px, 10px);
+    }
+    79.5% {
+        transform: translate(0, 0);
+    }
+}
+
+/* ===================================
+   АНИМАЦИЯ СМЕЩЕНИЯ ОРАНЖЕВОГО СЛОЯ
+   Длительность: 0.5 сек (быстрое мерцание)
+   =================================== */
+@keyframes glitch-anim-1 {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: translate(-3px, 2px);
+        opacity: 0.8;
+    }
+    40% {
+        transform: translate(3px, -2px);
+        opacity: 0.5;
+    }
+    60% {
+        transform: translate(-3px, -2px);
+        opacity: 0.8;
+    }
+    80% {
+        transform: translate(3px, 2px);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(0, 0);
+        opacity: 0.5;
+    }
+}
+
+/* ===================================
+   АНИМАЦИЯ СМЕЩЕНИЯ ТЁМНО-СЕРОГО СЛОЯ
+   Длительность: 0.5 сек (быстрое мерцание)
+   =================================== */
+@keyframes glitch-anim-2 {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: translate(3px, -2px);
+        opacity: 0.8;
+    }
+    40% {
+        transform: translate(-3px, 2px);
+        opacity: 0.5;
+    }
+    60% {
+        transform: translate(3px, 2px);
+        opacity: 0.8;
+    }
+    80% {
+        transform: translate(-3px, -2px);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(0, 0);
+        opacity: 0.5;
+    }
+}
+
+/* ===================================
+   АДАПТАЦИЯ ПОД РАЗНЫЕ КОНТЕЙНЕРЫ
+   =================================== */
+.hero__title.glitch-wrapper {
+    font-size: inherit;
+}
+
+.hero__title .glitch {
+    display: inline-flex !important;
+    gap: 0.3em;
+    align-items: center;
+}
+
+.hero__title .glitch-word {
+    display: inline-block;
+    transform-origin: center center;
+}
+
+.hero__title--small.glitch {
+    font-size: inherit;
+}
+
+/* Медиа-запросы для мобильных */
+@media (max-width: 768px) {
+    .glitch::before,
+    .glitch::after {
+        font-size: inherit;
+    }
+}

@@ -1,0 +1,31 @@
+/* 
+  3D Card Hover Effect
+  Для применения эффекта добавьте родительскому контейнеру класс .effect-container
+  А каждой карточке — класс .effect-card
+*/
+
+.effect-container {
+  perspective: 1000px;
+}
+
+.effect-card {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.5s, border-color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+.effect-card:hover {
+  transform: translateZ(5px) rotateX(8deg) rotateY(8deg) !important;
+  box-shadow: 0 15px 30px -10px rgba(101, 157, 189, 0.2);
+}
+
+/* Опционально: элементы внутри карточки с 3D-эффектом */
+.effect-card__content {
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.effect-card:hover .effect-card__content {
+  transform: translateZ(25px);
+}

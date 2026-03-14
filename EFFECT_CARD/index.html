@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFFECT_CARD - Пример использования</title>
+
+    <!-- Подключение стилей эффекта -->
+    <link rel="stylesheet" href="effect-card.css?v=4">
+
+    <style>
+        /* Базовые стили для демонстрации */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f5f5f5;
+            padding: 60px 20px;
+        }
+
+        .demo-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .demo-title {
+            text-align: center;
+            font-size: 36px;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .demo-subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 50px;
+        }
+
+        /* Сетка для карточек */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        /* Индикатор количества полос */
+        .stripe-info {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            max-width: 300px;
+        }
+
+        .stripe-info h4 {
+            margin-bottom: 10px;
+            color: #ff6b00;
+        }
+
+        .stripe-info ul {
+            list-style: none;
+            font-size: 12px;
+        }
+
+        .stripe-info li {
+            margin-bottom: 5px;
+            opacity: 0.8;
+        }
+    </style>
+
+    <!-- GSAP для анимаций (опционально) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <section class="demo-section">
+        <h1 class="demo-title">EFFECT_CARD</h1>
+        <p class="demo-subtitle">Эффект карточки с металлическим переливанием (5 полос)</p>
+
+        <div class="cards-grid">
+            <!-- Карточка 1 - Пейзаж -->
+            <div class="effect-card">
+                <div class="effect-card-stripe"></div>
+                <div class="effect-card-stripe--fast"></div>
+                <div class="effect-card-stripe--bottom"></div>
+                <div class="effect-card__content">
+                    <div class="effect-card__image">
+                        <img src="https://picsum.photos/seed/landscape1/400/300" alt="Пейзаж 1">
+                    </div>
+                    <h3 class="effect-card__title">Горный пейзаж</h3>
+                    <p class="effect-card__text">Карточка с изображением горного ландшафта</p>
+                </div>
+            </div>
+
+            <!-- Карточка 2 - Архитектура -->
+            <div class="effect-card">
+                <div class="effect-card-stripe"></div>
+                <div class="effect-card-stripe--fast"></div>
+                <div class="effect-card-stripe--bottom"></div>
+                <div class="effect-card__content">
+                    <div class="effect-card__image">
+                        <img src="https://picsum.photos/seed/architecture1/400/300" alt="Архитектура 1">
+                    </div>
+                    <h3 class="effect-card__title">Городская архитектура</h3>
+                    <p class="effect-card__text">Современные здания и сооружения</p>
+                </div>
+            </div>
+
+            <!-- Карточка 3 - Природа -->
+            <div class="effect-card">
+                <div class="effect-card-stripe"></div>
+                <div class="effect-card-stripe--fast"></div>
+                <div class="effect-card-stripe--bottom"></div>
+                <div class="effect-card__content">
+                    <div class="effect-card__image">
+                        <img src="https://picsum.photos/seed/nature1/400/300" alt="Природа 1">
+                    </div>
+                    <h3 class="effect-card__title">Живая природа</h3>
+                    <p class="effect-card__text">Красота естественной среды</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Инфо-панель о полосах -->
+    <div class="stripe-info">
+        <h4>5 анимированных полос:</h4>
+        <ul>
+            <li>⚡ Средняя (0.67 сек) - быстро</li>
+            <li>🔄 Маленькая (1.3 сек) - средне</li>
+            <li>🌊 Быстрая (2.7 сек) - плавно</li>
+            <li>💫 Большая (4 сек) - медленно</li>
+            <li>🎯 Нижняя (5.3 сек) - очень медленно</li>
+        </ul>
+    </div>
+
+    <!-- Подключение JS эффекта (опционально) -->
+    <script src="effect-card-gsap.js"></script>
+    <script>
+        // Инициализация анимаций (если нужен кастомный селектор)
+        // initEffectCardAnimation('.effect-card', {
+        //     triggerSection: '.demo-section',
+        //     start: 'top 80%',
+        //     stagger: 0.2
+        // });
+    </script>
+</body>
+</html>

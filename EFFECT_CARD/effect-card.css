@@ -1,0 +1,271 @@
+/**
+ * EFFECT_CARD - Эффект карточки с металлическим переливанием
+ * Использование: добавьте класс "effect-card" к вашему элементу
+ *
+ * HTML структура:
+ * <div class="effect-card">
+ *   <div class="effect-card__stripe"></div>
+ *   <div class="effect-card__stripe--fast"></div>
+ *   <div class="effect-card__stripe--bottom"></div>
+ *   <div class="effect-card__content">
+ *     <!-- Ваш контент -->
+ *   </div>
+ * </div>
+ */
+
+/* ===================================
+   Базовые стили карточки
+   =================================== */
+.effect-card {
+    --white: hsl(0, 0%, 100%);
+    --black: hsl(240, 15%, 9%);
+    --paragraph: hsl(0, 0%, 60%);
+    --line: hsl(0, 0%, 90%);
+    --primary: #ff6b00;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #f0f1f3;
+    border-radius: 10px;
+    border: 2px solid #e5e7eb;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ===================================
+   Металлическое переливание (псевдоэлементы)
+   =================================== */
+.effect-card::before,
+.effect-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 30%,
+      rgba(229, 231, 235, 0.9) 50%,
+      transparent 70%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Большая полоса - сверху вниз (4 сек) */
+.effect-card::before {
+    top: -100%;
+    animation: metalShine 4s linear infinite;
+}
+
+/* Маленькая полоса - снизу вверх (1.3 сек) */
+.effect-card::after {
+    bottom: -50%;
+    height: 50%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 15%,
+      rgba(229, 231, 235, 0.9) 25%,
+      transparent 35%,
+      transparent 100%
+    );
+    animation: metalShineReverse 1.3s linear infinite;
+}
+
+/* ===================================
+   Дополнительные полосы (элементы)
+   =================================== */
+/* Большая полоса - снизу вверх (5.3 сек) */
+.effect-card-stripe--bottom {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 15%,
+      rgba(229, 231, 235, 0.9) 25%,
+      transparent 35%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+    bottom: -90%;
+    animation: metalShineBottom 5.3s linear infinite;
+}
+
+/* Средняя полоса - сверху вниз (0.67 сек) */
+.effect-card-stripe {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 20%,
+      rgba(229, 231, 235, 0.9) 25%,
+      transparent 30%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+    top: -40%;
+    animation: metalShineMiddle 0.67s linear infinite;
+}
+
+/* Маленькая быстрая полоса - снизу вверх (2.7 сек) */
+.effect-card-stripe--fast {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 15%,
+      rgba(229, 231, 235, 0.9) 25%,
+      transparent 35%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+    bottom: -15%;
+    animation: metalShineFast 2.7s linear infinite;
+}
+
+/* ===================================
+   Анимации
+   =================================== */
+@keyframes metalShine {
+    0% {
+        top: -100%;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+@keyframes metalShineMiddle {
+    0% {
+        top: -40%;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+@keyframes metalShineFast {
+    0% {
+        bottom: -15%;
+    }
+    100% {
+        bottom: 100%;
+    }
+}
+
+@keyframes metalShineBottom {
+    0% {
+        bottom: -50%;
+    }
+    100% {
+        bottom: 100%;
+    }
+}
+
+@keyframes metalShineReverse {
+    0% {
+        bottom: -50%;
+    }
+    100% {
+        bottom: 100%;
+    }
+}
+
+/* ===================================
+   Контент внутри карточки
+   =================================== */
+.effect-card__content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.effect-card__image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: #ddd;
+    border-radius: 0.5rem;
+}
+
+.effect-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(100%);
+    transition: filter 0.5s ease;
+}
+
+.effect-card:hover .effect-card__image img {
+    filter: grayscale(0%);
+}
+
+.effect-card__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-dark, #1a1a2e);
+    text-align: center;
+}
+
+.effect-card__text {
+    color: var(--color-gray, #6b7280);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+/* ===================================
+   Hover эффект (подъём карточки)
+   =================================== */
+.effect-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ===================================
+   Адаптивность
+   =================================== */
+@media (max-width: 768px) {
+    .effect-card {
+        padding: 1rem;
+    }
+
+    .effect-card__image {
+        height: 200px;
+    }
+
+    .effect-card__title {
+        font-size: 1.1rem;
+    }
+
+    .effect-card__text {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .effect-card__image {
+        height: 180px;
+    }
+}

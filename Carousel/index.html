@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карусель с эффектами</title>
+    <link rel="stylesheet" href="carousel.css">
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="carousel__viewport" id="carouselViewport">
+                <div class="carousel__container">
+                    <div class="carousel__slide">
+                        <img src="https://picsum.photos/800/450?random=1" alt="Изображение 1" loading="lazy">
+                    </div>
+                    <div class="carousel__slide">
+                        <img src="https://picsum.photos/800/450?random=2" alt="Изображение 2" loading="lazy">
+                    </div>
+                    <div class="carousel__slide">
+                        <img src="https://picsum.photos/800/450?random=3" alt="Изображение 3" loading="lazy">
+                    </div>
+                    <div class="carousel__slide">
+                        <img src="https://picsum.photos/800/450?random=4" alt="Изображение 4" loading="lazy">
+                    </div>
+                    <div class="carousel__slide">
+                        <img src="https://picsum.photos/800/450?random=5" alt="Изображение 5" loading="lazy">
+                    </div>
+                    <div class="carousel__slide">
+                        <img src="https://picsum.photos/800/450?random=6" alt="Изображение 6" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel__prev" aria-label="Предыдущее">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <button class="carousel__next" aria-label="Следующее">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Embla Carousel -->
+    <script src="https://cdn.jsdelivr.net/npm/embla-carousel@8.5.2/embla-carousel.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/embla-carousel-auto-scroll@8.5.2/embla-carousel-auto-scroll.umd.min.js"></script>
+    <script src="carousel.js"></script>
+</body>
+</html>
