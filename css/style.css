@@ -1165,6 +1165,11 @@ button {
     margin-top: 25px;
 }
 
+.contact__map {
+    margin-top: 40px;
+    width: 100%;
+}
+
 /* From Uiverse.io by Madflows (адаптировано) */
 .messenger {
     position: relative;

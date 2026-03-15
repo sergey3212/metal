@@ -50,9 +50,9 @@
                     <li class="nav__item"><a href="#hero" class="nav__link">Главная</a></li>
                     <li class="nav__item"><a href="#advantages" class="nav__link">Преимущества</a></li>
                     <li class="nav__item"><a href="#directions" class="nav__link">Направления</a></li>
-                    <li class="nav__item"><a href="#calculator" class="nav__link">Калькулятор</a></li>
                     <li class="nav__item"><a href="#gallery" class="nav__link">Галерея</a></li>
                     <li class="nav__item"><a href="#faq" class="nav__link">FAQ</a></li>
+                    <li class="nav__item"><a href="#calculator" class="nav__link">Калькулятор</a></li>
                     <li class="nav__item"><a href="#contact" class="nav__link">Контакты</a></li>
                 </ul>
             </nav>
@@ -482,6 +482,11 @@
                     </a>
                 </div>
             </div>
+
+            <!-- Яндекс.Карта -->
+            <div class="contact__map">
+                <div id="map" style="position:relative;overflow:hidden;width:100%;height:400px;"></div>
+            </div>
         </div>
     </section>
 
@@ -519,9 +524,36 @@
     <script src="https://cdn.jsdelivr.net/npm/embla-carousel@8.5.2/embla-carousel.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/embla-carousel-auto-scroll@8.5.2/embla-carousel-auto-scroll.umd.min.js"></script>
 
+    <!-- Яндекс.Карты API -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU" type="text/javascript"></script>
+
     <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/glitch-words.js"></script>
     <script src="js/directions-gsap.js"></script>
+
+    <!-- Инициализация карты -->
+    <script>
+        ymaps.ready(init);
+
+        function init() {
+            var myMap = new ymaps.Map("map", {
+                center: [50.411130, 80.245813],
+                zoom: 16,
+                controls: ['zoomControl', 'fullscreenControl']
+            });
+
+            // SVG иконка в стиле solar--map-point-bold оранжевого цвета
+            var myPlacemark = new ymaps.Placemark([50.411130, 80.245813], {}, {
+                iconLayout: 'default#image',
+                iconImageHref: 'images/marker.svg',
+                iconImageSize: [64, 64],
+                iconImageOffset: [-32, -64]
+            });
+
+            myMap.geoObjects.add(myPlacemark);
+            myMap.behaviors.disable('scrollZoom');
+        }
+    </script>
 </body>
 </html>
