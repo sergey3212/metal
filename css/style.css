@@ -72,28 +72,143 @@ button {
    Animated Icons for Advantages
    =================================== */
 
-/* Шестерёнка - вращение (производство) */
+/* Обёртка для иконки завода с дымом */
+.advantage__icon-wrapper {
+    position: relative;
+    display: inline-block;
+    overflow: visible !important;
+}
+
+/* Шестерёнка - пульсация как у щита (производство) */
 .advantage__icon[data-icon="mdi:factory"] {
-    animation: factoryRotate 3s linear infinite;
+    animation: factoryPulse 2s ease-in-out infinite;
+    transform-origin: center;
+    display: inline-block;
+}
+
+@keyframes factoryPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.8;
+    }
+}
+
+/* Дым из труб завода - идёт из правой трубы */
+.factory-smoke {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: rgba(180, 180, 180, 0.9);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    animation: smokeRise 2.5s ease-out infinite;
+    z-index: 100;
+}
+
+.factory-smoke.smoke-1 {
+    top: -8px;
+    right: 10px;
+    left: auto;
+    animation-delay: 0s;
+}
+
+.factory-smoke.smoke-2 {
+    top: -8px;
+    right: 16px;
+    left: auto;
+    animation-delay: 0.7s;
+}
+
+.factory-smoke.smoke-3 {
+    top: -8px;
+    right: 13px;
+    left: auto;
+    animation-delay: 1.4s;
+}
+
+/* Разрешаем дыму выходить за пределы карточки */
+.effect-card,
+.effect-card__content,
+.advantage,
+.advantage__icon-wrapper {
+    overflow: visible !important;
+}
+
+/* Анимация подъёма дыма */
+@keyframes smokeRise {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(1);
+    }
+    20% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px) scale(2);
+    }
+}
+
+/* Пауза анимации при наведении */
+.advantage:hover .advantage__icon,
+.advantage:hover .factory-smoke,
+.advantage:hover .palette-icon {
+    animation-play-state: paused;
+}
+
+/* Кисточка - плавное покачивание (покраска) */
+.advantage__icon-wrapper-paint {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto 20px;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.advantage__icon-wrapper-paint-inner {
+    position: relative;
+    display: inline-block;
+    padding-left: 45px; /* место для палитры слева */
+}
+
+.advantage__icon[data-icon="mdi:paintbrush"] {
+    animation: brushSwing 3s ease-in-out infinite;
+    transform-origin: top center;
+    display: inline-block;
+    margin-left: 0;
+}
+
+/* Палитра рядом с кисточкой - слева */
+.advantage__icon-wrapper-paint-inner .palette-icon {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 56px !important;
+    width: 56px !important;
+    height: 56px !important;
+    animation: palettePulse 2.5s ease-in-out infinite;
     transform-origin: center;
 }
 
-@keyframes factoryRotate {
-    0% { transform: rotate(0deg); }
-    50% { transform: rotate(10deg); }
-    100% { transform: rotate(0deg); }
+@keyframes brushSwing {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
 }
 
-/* Палитра - покачивание (покраска) */
-.advantage__icon[data-icon="mdi:palette"] {
-    animation: paletteSwing 2s ease-in-out infinite;
-    transform-origin: top center;
-}
-
-@keyframes paletteSwing {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-8deg); }
-    75% { transform: rotate(8deg); }
+@keyframes palettePulse {
+    0%, 100% {
+        transform: scale(1) rotate(-5deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1) rotate(-5deg);
+        opacity: 0.85;
+    }
 }
 
 /* Линейка - измерение (чертежи) */
@@ -137,21 +252,18 @@ button {
     }
 }
 
-/* Грузовик - движение (доставка) */
+/* Грузовик - движение слева направо и обратно (доставка) */
 .advantage__icon[data-icon="mdi:truck-delivery"] {
-    animation: truckDrive 2s linear infinite;
+    animation: truckMove 2s ease-in-out infinite alternate;
     transform-origin: center;
 }
 
-@keyframes truckDrive {
-    0%, 100% { 
-        transform: translateX(0) rotate(0deg);
+@keyframes truckMove {
+    0% {
+        transform: translateX(-15px);
     }
-    25% { 
-        transform: translateX(3px) rotate(-2deg);
-    }
-    75% { 
-        transform: translateX(-3px) rotate(2deg);
+    100% {
+        transform: translateX(15px);
     }
 }
 
@@ -166,11 +278,7 @@ button {
     100% { transform: rotate(360deg); }
 }
 
-/* Пауза анимации при наведении на карточку */
-.advantage:hover .advantage__icon {
-    animation-play-state: paused;
-}
-
+/* Пауза анимации при наведении на логотип */
 .header:hover .header__logo-icon {
     animation-play-state: paused;
 }
@@ -587,7 +695,7 @@ button {
     width: 56px;
     height: 56px;
     margin-bottom: 20px;
-    color: var(--color-primary);
+    color: var(--color-primary) !important;
 }
 
 .advantage__title {
