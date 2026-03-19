@@ -557,7 +557,10 @@
             });
 
             // SVG иконка в стиле solar--map-point-bold оранжевого цвета
-            var myPlacemark = new ymaps.Placemark([50.411130, 80.245813], {}, {
+            var myPlacemark = new ymaps.Placemark([50.411130, 80.245813], {
+                hintContent: 'г. Барнаул, пр. Ленина, д. 1',
+                balloonContent: '<strong>Мастерская металлоизделий</strong><br>г. Барнаул, пр. Ленина, д. 1<br>+7 (999) 000-00-00'
+            }, {
                 iconLayout: 'default#image',
                 iconImageHref: 'images/marker.svg',
                 iconImageSize: [64, 64],

@@ -23,30 +23,58 @@ document.addEventListener('DOMContentLoaded', function() {
 function initMobileMenu() {
     const burger = document.getElementById('burger');
     const nav = document.getElementById('nav');
-    
+    const header = document.getElementById('header');
+
     if (!burger || !nav) return;
-    
+
+    // Header изначально скрыт при загрузке
+    if (header) {
+        header.classList.add('header--hidden');
+        // Плавно показываем header после загрузки
+        setTimeout(function() {
+            header.classList.remove('header--hidden');
+        }, 100);
+    }
+
     burger.addEventListener('click', function() {
+        const isActive = !nav.classList.contains('active');
+        
         burger.classList.toggle('active');
         nav.classList.toggle('active');
-        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+        
+        // Header уезжает вверх при открытии меню
+        if (header) {
+            if (isActive) {
+                header.classList.add('header--hidden');
+            } else {
+                header.classList.remove('header--hidden');
+            }
+        }
+        
+        document.body.style.overflow = isActive ? 'hidden' : '';
     });
-    
+
     // Close menu when clicking on nav links
     const navLinks = nav.querySelectorAll('.nav__link');
     navLinks.forEach(function(link) {
         link.addEventListener('click', function() {
             burger.classList.remove('active');
             nav.classList.remove('active');
+            if (header) {
+                header.classList.remove('header--hidden');
+            }
             document.body.style.overflow = '';
         });
     });
-    
+
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
         if (!nav.contains(e.target) && !burger.contains(e.target)) {
             burger.classList.remove('active');
             nav.classList.remove('active');
+            if (header) {
+                header.classList.remove('header--hidden');
+            }
             document.body.style.overflow = '';
         }
     });
