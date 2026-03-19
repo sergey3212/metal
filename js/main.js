@@ -231,14 +231,25 @@ function initGalleryCarousel() {
 function initHeaderScroll() {
     const header = document.getElementById('header');
     const hero = document.querySelector('.hero');
+    const nextSectionTitle = document.querySelector('.advantages .section-title');
     if (!header || !hero) return;
 
     window.addEventListener('scroll', function() {
         const currentScroll = window.pageYOffset;
-        const heroHeight = hero.offsetHeight;
+        const headerHeight = header.offsetHeight;
 
-        // Меняем прозрачность, когда прокрутили больше высоты hero секции
-        if (currentScroll > heroHeight - 100) {
+        // Получаем позицию заголовка следующей секции
+        let triggerPosition = 0;
+        if (nextSectionTitle) {
+            const titleRect = nextSectionTitle.getBoundingClientRect();
+            triggerPosition = currentScroll + titleRect.top - headerHeight;
+        } else {
+            // Фоллбэк: используем высоту hero секции
+            triggerPosition = hero.offsetHeight - 100;
+        }
+
+        // Меняем прозрачность, когда меню достигает заголовка следующей секции
+        if (currentScroll >= triggerPosition) {
             header.classList.add('header--transparent');
             header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
         } else {
