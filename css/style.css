@@ -69,6 +69,113 @@ button {
 }
 
 /* ===================================
+   Animated Icons for Advantages
+   =================================== */
+
+/* Шестерёнка - вращение (производство) */
+.advantage__icon[data-icon="mdi:factory"] {
+    animation: factoryRotate 3s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes factoryRotate {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Палитра - покачивание (покраска) */
+.advantage__icon[data-icon="mdi:palette"] {
+    animation: paletteSwing 2s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+@keyframes paletteSwing {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-8deg); }
+    75% { transform: rotate(8deg); }
+}
+
+/* Линейка - измерение (чертежи) */
+.advantage__icon[data-icon="mdi:ruler"] {
+    animation: rulerMeasure 2.5s ease-in-out infinite;
+    transform-origin: left center;
+}
+
+@keyframes rulerMeasure {
+    0%, 100% { transform: scaleX(1) translateX(0); }
+    50% { transform: scaleX(1.1) translateX(3px); }
+}
+
+/* Песочные часы - переворачивание (время) */
+.advantage__icon[data-icon="mdi:timer-sand"] {
+    animation: hourglassFlip 4s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes hourglassFlip {
+    0%, 100% { transform: rotate(0deg); }
+    45% { transform: rotate(180deg); }
+    55% { transform: rotate(180deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Щит - пульсация защиты (гарантия) */
+.advantage__icon[data-icon="mdi:shield-check-outline"] {
+    animation: shieldPulse 2s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes shieldPulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1.15);
+        opacity: 0.8;
+    }
+}
+
+/* Грузовик - движение (доставка) */
+.advantage__icon[data-icon="mdi:truck-delivery"] {
+    animation: truckDrive 2s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes truckDrive {
+    0%, 100% { 
+        transform: translateX(0) rotate(0deg);
+    }
+    25% { 
+        transform: translateX(3px) rotate(-2deg);
+    }
+    75% { 
+        transform: translateX(-3px) rotate(2deg);
+    }
+}
+
+/* Логотип - постоянное вращение */
+.header__logo-icon[data-icon="mdi:gear"] {
+    animation: gearSpin 8s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes gearSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Пауза анимации при наведении на карточку */
+.advantage:hover .advantage__icon {
+    animation-play-state: paused;
+}
+
+.header:hover .header__logo-icon {
+    animation-play-state: paused;
+}
+
+/* ===================================
    Container & Utilities
    =================================== */
 .container {
