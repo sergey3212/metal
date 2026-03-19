@@ -476,12 +476,6 @@
             </form>
             
             <div class="contact__info">
-                <p class="contact__text">
-                    <strong>Телефон:</strong> <a href="tel:+79990000000">+7 (999) 000-00-00</a>
-                </p>
-                <p class="contact__text">
-                    <strong>Email:</strong> <a href="mailto:info@metalmaster.ru">info@metalmaster.ru</a>
-                </p>
                 <div class="contact__messengers">
                     <a href="https://t.me/username" class="messenger" target="_blank" rel="noopener">
                         <span class="button-content">
@@ -552,23 +546,60 @@
         function init() {
             var myMap = new ymaps.Map("map", {
                 center: [50.411130, 80.245813],
-                zoom: 16,
+                zoom: 17,
                 controls: ['zoomControl', 'fullscreenControl']
             });
 
-            // SVG иконка в стиле solar--map-point-bold оранжевого цвета
-            var myPlacemark = new ymaps.Placemark([50.411130, 80.245813], {
-                hintContent: 'г. Барнаул, пр. Ленина, д. 1',
-                balloonContent: '<strong>Мастерская металлоизделий</strong><br>г. Барнаул, пр. Ленина, д. 1<br>+7 (999) 000-00-00'
-            }, {
-                iconLayout: 'default#image',
-                iconImageHref: 'images/marker.svg',
-                iconImageSize: [64, 64],
-                iconImageOffset: [-32, -64]
-            });
+            // Получаем точный адрес через геокодер Яндекса
+            var geocodePromise = ymaps.geocode([50.411130, 80.245813]);
+            
+            geocodePromise.then(function (res) {
+                var firstGeoObject = res.geoObjects.get(0);
+                
+                // Получаем компоненты адреса
+                var addressLine = firstGeoObject.getAddressLine(); // Полный адрес
+                var street = firstGeoObject.getThoroughfare() || ''; // Улица
+                var house = firstGeoObject.getPremiseNumber() || ''; // Дом
+                var locality = firstGeoObject.getLocality() || firstGeoObject.getAdministrativeArea() || ''; // Город/область
+                
+                // Формируем короткий и полный адрес
+                var shortAddress = (locality ? locality + ', ' : '') + (street ? street : '') + (house ? ', д. ' + house : '');
+                var fullAddress = addressLine;
+                
+                // Если не удалось получить адрес, используем запасной вариант
+                if (!street && !house) {
+                    shortAddress = 'г. Семей';
+                    fullAddress = 'Казахстан, г. Семей';
+                }
+                
+                var myPlacemark = new ymaps.Placemark([50.411130, 80.245813], {
+                    hintContent: shortAddress,
+                    balloonContent: '<strong>Мастерская металлоизделий</strong><br>' + fullAddress + '<br>+7 (999) 000-00-00'
+                }, {
+                    iconLayout: 'default#image',
+                    iconImageHref: 'images/marker.svg',
+                    iconImageSize: [64, 64],
+                    iconImageOffset: [-32, -64]
+                });
 
-            myMap.geoObjects.add(myPlacemark);
-            myMap.behaviors.disable('scrollZoom');
+                myMap.geoObjects.add(myPlacemark);
+                myMap.behaviors.disable('scrollZoom');
+                
+            }, function (err) {
+                console.error('Ошибка геокодирования:', err);
+                // Запасной вариант
+                var myPlacemark = new ymaps.Placemark([50.411130, 80.245813], {
+                    hintContent: 'г. Семей',
+                    balloonContent: '<strong>Мастерская металлоизделий</strong><br>Казахстан, г. Семей<br>+7 (999) 000-00-00'
+                }, {
+                    iconLayout: 'default#image',
+                    iconImageHref: 'images/marker.svg',
+                    iconImageSize: [64, 64],
+                    iconImageOffset: [-32, -64]
+                });
+                myMap.geoObjects.add(myPlacemark);
+                myMap.behaviors.disable('scrollZoom');
+            });
         }
     </script>
 </body>

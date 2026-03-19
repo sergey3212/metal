@@ -5,7 +5,7 @@
     /* Colors */
     --color-primary: #ff6b00;
     --color-primary-dark: #e65c00;
-    --color-dark: #1a1a2e;
+    --color-dark: #333333;
     --color-gray: #6b7280;
     --color-light: #f3f4f6;
     --color-white: #ffffff;
@@ -516,14 +516,16 @@ button {
 
 .hero__title {
     font-size: 64px;
-    font-weight: 800;
+    font-weight: 400;
     line-height: 1.2;
     margin-bottom: 20px;
+    text-transform: uppercase;
+    color: #ff6b00;
 }
 
 /* Moving Letters Effect #12 */
 .hero__title.ml12 {
-    font-weight: 200;
+    font-weight: 400;
     font-size: 80px;
 }
 
