@@ -102,7 +102,7 @@ button {
     position: absolute;
     width: 10px;
     height: 10px;
-    background: rgba(180, 180, 180, 0.9);
+    background: rgba(220, 220, 220, 0.9);
     border-radius: 50%;
     opacity: 0;
     pointer-events: none;
@@ -148,17 +148,14 @@ button {
     20% {
         opacity: 0.8;
     }
+    70% {
+        opacity: 0;
+        transform: translateY(-15px) scale(2);
+    }
     100% {
         opacity: 0;
-        transform: translateY(-30px) scale(2);
+        transform: translateY(-15px) scale(2);
     }
-}
-
-/* Пауза анимации при наведении */
-.advantage:hover .advantage__icon,
-.advantage:hover .factory-smoke,
-.advantage:hover .palette-icon {
-    animation-play-state: paused;
 }
 
 /* Кисточка - плавное покачивание (покраска) */
@@ -176,7 +173,7 @@ button {
 }
 
 .advantage__icon[data-icon="mdi:paintbrush"] {
-    animation: brushSwing 3s ease-in-out infinite;
+    animation: brushSwing 2s ease-in-out infinite;
     transform-origin: top center;
     display: inline-block;
     margin-left: 0;
@@ -190,7 +187,7 @@ button {
     font-size: 56px !important;
     width: 56px !important;
     height: 56px !important;
-    animation: palettePulse 2.5s ease-in-out infinite;
+    animation: palettePulse 2s ease-in-out infinite;
     transform-origin: center;
 }
 
@@ -210,9 +207,58 @@ button {
     }
 }
 
+/* Карандаш с линейкой - черчение (работа по чертежам) */
+.advantage__icon-wrapper-drawing {
+    position: relative;
+    display: inline-block;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding-left: 60px; /* место для документа слева */
+}
+
+.advantage__icon[data-icon="mdi:pencil-ruler"] {
+    animation: drawingSketch 2s ease-in-out infinite;
+    transform-origin: center;
+    display: inline-block;
+}
+
+/* Документ/чертёж рядом с карандашом - слева */
+.advantage__icon-wrapper-drawing .blueprint-icon {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 56px !important;
+    width: 56px !important;
+    height: 56px !important;
+    animation: blueprintPulse 2s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes drawingSketch {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.85;
+    }
+}
+
+@keyframes blueprintPulse {
+    0%, 100% {
+        transform: scale(1.1);
+        opacity: 0.85;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 /* Линейка - измерение (чертежи) */
 .advantage__icon[data-icon="mdi:ruler"] {
-    animation: rulerMeasure 2.5s ease-in-out infinite;
+    animation: rulerMeasure 2s ease-in-out infinite;
     transform-origin: left center;
 }
 
@@ -223,7 +269,7 @@ button {
 
 /* Песочные часы - переворачивание (время) */
 .advantage__icon[data-icon="mdi:timer-sand"] {
-    animation: hourglassFlip 4s ease-in-out infinite;
+    animation: hourglassFlip 2s ease-in-out infinite;
     transform-origin: center;
 }
 
