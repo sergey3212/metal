@@ -1932,9 +1932,15 @@ button {
 
     /* Header */
     .header {
+<<<<<<< HEAD
         top: 15px;
         left: 15px;
         right: 15px;
+=======
+        top: 10px;
+        left: 10px;
+        right: 10px;
+>>>>>>> c10d666c43d9909854a9c05953184b10a4b160bf
         width: auto;
         padding: 10px 15px;
         border-radius: 50px;
