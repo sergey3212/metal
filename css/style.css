@@ -29,6 +29,12 @@
 
 html {
     scroll-behavior: smooth;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
 }
 
 body {
@@ -37,6 +43,8 @@ body {
     line-height: 1.6;
     color: var(--color-dark);
     background-color: var(--color-white);
+    margin: 0;
+    overflow-x: hidden;
 }
 
 img {
@@ -1916,29 +1924,46 @@ button {
     :root {
         --section-padding: 40px 0;
     }
-    
+
     .section-title {
         font-size: 28px;
         margin-bottom: 35px;
     }
-    
+
     /* Header */
+    .header {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        width: auto;
+        padding: 10px 15px;
+        border-radius: 50px;
+        box-sizing: border-box;
+    }
+
     .header__nav {
         position: fixed;
         top: 70px;
-        left: -100%;
+        left: 0;
         width: 100%;
         height: calc(100vh - 70px);
         background: var(--color-white);
         flex-direction: column;
         justify-content: center;
-        transition: left var(--transition);
+        transition: opacity var(--transition), transform var(--transition);
+        transform: translateX(-100%);
+        opacity: 0;
         z-index: 1001;
         padding: 40px 0;
+        max-width: 100%;
+        box-sizing: border-box;
+        display: none;
     }
 
     .header__nav.active {
-        left: 0;
+        transform: translateX(0);
+        opacity: 1;
+        display: flex;
     }
 
     /* Header уезжает вверх при открытии меню */

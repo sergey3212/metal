@@ -583,7 +583,8 @@
 
                 myMap.geoObjects.add(myPlacemark);
                 myMap.behaviors.disable('scrollZoom');
-                
+                myMap.behaviors.disable('drag');
+
             }, function (err) {
                 console.error('Ошибка геокодирования:', err);
                 // Запасной вариант
@@ -598,6 +599,7 @@
                 });
                 myMap.geoObjects.add(myPlacemark);
                 myMap.behaviors.disable('scrollZoom');
+                myMap.behaviors.disable('drag');
             });
         }
     </script>
