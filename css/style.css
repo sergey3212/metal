@@ -355,16 +355,18 @@ button {
    =================================== */
 .header {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    width: calc(100% - 40px);
     background: rgba(245, 245, 245, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    padding: 15px 0;
+    padding: 15px 20px;
     transform: translateY(0);
     transition: transform var(--transition), background var(--transition);
+    border-radius: 100px;
 }
 
 .header--hidden {
