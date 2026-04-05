@@ -1943,21 +1943,23 @@ button {
 
     .header__nav {
         position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: var(--color-white);
+        top: 115px;
+        left: 15px;
+        right: 15px;
+        width: calc(100% - 30px);
+        height: calc(100vh - 115px);
+        background: rgba(245, 245, 245, 0.95);
+        backdrop-filter: blur(10px);
         flex-direction: column;
         justify-content: center;
         transition: opacity var(--transition), transform var(--transition);
         transform: translateX(-100%);
         opacity: 0;
         z-index: 1001;
-        padding: 40px 0;
-        max-width: 100%;
+        padding: 40px 15px;
         box-sizing: border-box;
         display: none;
+        border-radius: 30px;
     }
 
     .header__nav.active {
@@ -1968,7 +1970,7 @@ button {
 
     /* Header уезжает вверх при открытии меню */
     .header.header--hidden {
-        transform: translateY(-100%);
+        transform: translateY(-200%);
     }
 
     .nav__list {
