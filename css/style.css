@@ -1903,6 +1903,52 @@ button {
    Responsive Design
    =================================== */
 
+/* Desktop (max-width: 1200px) */
+@media (max-width: 1200px) {
+    .header {
+        padding: 14px 18px;
+    }
+
+    .header__container {
+        gap: 16px;
+    }
+
+    .header__logo {
+        font-size: 19px;
+    }
+
+    .header__logo-icon {
+        font-size: 30px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .nav__list {
+        gap: 22px;
+    }
+
+    .nav__link {
+        font-size: 15px;
+    }
+
+    .header__phone {
+        font-size: 15px;
+    }
+
+    /* Hero — заголовок и глитч */
+    .hero__title.ml12 {
+        font-size: 64px;
+    }
+
+    .hero__title--small {
+        font-size: 28px;
+    }
+
+    .hero__title .glitch {
+        font-size: inherit;
+    }
+}
+
 /* Tablet (max-width: 1024px) */
 @media (max-width: 1024px) {
     .gallery__grid {
@@ -1916,6 +1962,116 @@ button {
     .gallery__prev,
     .gallery__next {
         display: none;
+    }
+
+    /* Header — сжимаем элементы чтобы всё помещалось */
+    .header {
+        padding: 12px 15px;
+    }
+
+    .header__container {
+        gap: 12px;
+    }
+
+    .header__logo {
+        font-size: 18px;
+        gap: 8px;
+    }
+
+    .header__logo-icon {
+        font-size: 28px;
+        width: 28px;
+        height: 28px;
+    }
+
+    .header__logo-text {
+        white-space: nowrap;
+    }
+
+    .nav__list {
+        gap: 15px;
+    }
+
+    .nav__link {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .header__phone {
+        font-size: 14px;
+    }
+
+    /* Hero — заголовок и глитч */
+    .hero__title.ml12 {
+        font-size: 52px;
+    }
+
+    .hero__title--small {
+        font-size: 26px;
+    }
+
+    .hero__title .glitch {
+        gap: 0.25em;
+    }
+
+    .glitch::before,
+    .glitch::after {
+        width: 100%;
+        left: 0;
+    }
+}
+
+/* Narrow tablet (max-width: 900px) */
+@media (max-width: 900px) {
+    .header__container {
+        gap: 10px;
+    }
+
+    .nav__list {
+        gap: 10px;
+    }
+
+    .nav__link {
+        font-size: 13px;
+    }
+
+    .header__phone {
+        font-size: 13px;
+    }
+
+    .header__logo {
+        font-size: 16px;
+        gap: 6px;
+    }
+
+    .header__logo-icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .header__phone {
+        display: none;
+    }
+
+    /* Hero — заголовок и глитч */
+    .hero__title.ml12 {
+        font-size: 44px;
+    }
+
+    .hero__title--small {
+        font-size: 22px;
+    }
+
+    .hero__title .glitch {
+        gap: 0.2em;
+    }
+
+    .glitch::before,
+    .glitch::after {
+        width: 100%;
+        left: 0;
+        text-align: center;
     }
 }
 
@@ -1994,6 +2150,25 @@ button {
     /* Hero */
     .hero__title {
         font-size: 32px;
+    }
+
+    .hero__title.ml12 {
+        font-size: 38px;
+    }
+
+    .hero__title--small {
+        font-size: 20px;
+    }
+
+    .hero__title .glitch {
+        gap: 0.15em;
+    }
+
+    .glitch::before,
+    .glitch::after {
+        width: 100%;
+        left: 0;
+        text-align: center;
     }
     
     .hero__subtitle {
@@ -2133,6 +2308,25 @@ button {
     /* Hero */
     .hero__title {
         font-size: 26px;
+    }
+
+    .hero__title.ml12 {
+        font-size: 30px;
+    }
+
+    .hero__title--small {
+        font-size: 18px;
+    }
+
+    .hero__title .glitch {
+        gap: 0.1em;
+    }
+
+    .glitch::before,
+    .glitch::after {
+        width: 100%;
+        left: 0;
+        text-align: center;
     }
     
     .hero__subtitle {
