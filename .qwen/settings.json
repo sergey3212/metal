@@ -18,7 +18,8 @@
       "Bash(@for *)",
       "Bash(\"%f\")",
       "Bash(node *)",
-      "Bash(echo.)"
+      "Bash(echo.)",
+      "Bash(curl *)"
     ]
   },
   "mcpServers": {
