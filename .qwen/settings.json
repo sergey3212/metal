@@ -5,8 +5,37 @@
       "WebSearch",
       "WebFetch(compresto.app)",
       "Bash(python *)",
-      "Bash(del *)"
+      "Bash(del *)",
+      "WebFetch(www.mintlify.com)",
+      "WebFetch(github.com)",
+      "WebFetch(raw.githubusercontent.com)",
+      "Bash(mkdir *)",
+      "Bash(where *)",
+      "Bash(npx *)",
+      "Bash(findstr *)",
+      "Bash(f)",
+      "Bash(do *)",
+      "Bash(@for *)",
+      "Bash(\"%f\")",
+      "Bash(node *)",
+      "Bash(echo.)"
     ]
+  },
+  "mcpServers": {
+    "figma-bridge": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@gethopp/figma-mcp-bridge"
+      ]
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
+    }
   },
   "$version": 3
 }
