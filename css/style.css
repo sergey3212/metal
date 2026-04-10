@@ -276,14 +276,12 @@ button {
 
 /* Песочные часы - переворачивание (время) */
 .advantage__icon[data-icon="mdi:timer-sand"] {
-    animation: hourglassFlip 2s ease-in-out infinite;
+    animation: hourglassFlip 3s linear infinite;
     transform-origin: center;
 }
 
 @keyframes hourglassFlip {
-    0%, 100% { transform: rotate(0deg); }
-    45% { transform: rotate(180deg); }
-    55% { transform: rotate(180deg); }
+    0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
@@ -532,12 +530,6 @@ button {
     color: #ffffff;
 }
 
-/* Moving Letters Effect #12 */
-.hero__title.ml12 {
-    font-weight: 400;
-    font-size: 80px;
-}
-
 /* Скрываем переносы на мобильных по умолчанию */
 .mobile-br {
     display: none;
@@ -566,7 +558,7 @@ button {
 }
 
 @media (max-width: 768px) {
-    .hero__title.ml12 {
+    .hero__title {
         font-size: 48px;
     }
 
@@ -578,7 +570,7 @@ button {
 }
 
 @media (max-width: 480px) {
-    .hero__title.ml12 {
+    .hero__title {
         font-size: 36px;
     }
     
@@ -1963,7 +1955,7 @@ button {
     }
 
     /* Hero — заголовок и глитч */
-    .hero__title.ml12 {
+    .hero__title {
         font-size: 64px;
     }
 
@@ -2029,7 +2021,7 @@ button {
     }
 
     /* Hero — заголовок и глитч */
-    .hero__title.ml12 {
+    .hero__title {
         font-size: 52px;
     }
 
@@ -2082,7 +2074,7 @@ button {
     }
 
     /* Hero — заголовок и глитч */
-    .hero__title.ml12 {
+    .hero__title {
         font-size: 44px;
     }
 
@@ -2177,10 +2169,6 @@ button {
     
     /* Hero */
     .hero__title {
-        font-size: 32px;
-    }
-
-    .hero__title.ml12 {
         font-size: 38px;
     }
 
@@ -2335,10 +2323,6 @@ button {
     
     /* Hero */
     .hero__title {
-        font-size: 26px;
-    }
-
-    .hero__title.ml12 {
         font-size: 30px;
     }
 
