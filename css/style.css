@@ -69,6 +69,26 @@ button {
     background: none;
 }
 
+/* Убираем синюю рамку на мобильных при нажатии */
+button,
+a,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: transparent;
+    outline: none;
+}
+
+button:active,
+a:active,
+input:active,
+select:active,
+textarea:active {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
 /* Iconify Icons */
 .iconify {
     display: inline-block;
