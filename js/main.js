@@ -1,4 +1,40 @@
 /**
+ * Preloader - скрываем после полной загрузки страницы
+ */
+(function initPreloader() {
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;
+
+    // Блокируем скролл
+    document.body.classList.add('preloader-active');
+
+    // Скрываем прелоадер после загрузки всех ресурсов
+    window.addEventListener('load', function() {
+        // Небольшая задержка для гарантии отрисовки
+        setTimeout(function() {
+            preloader.classList.add('preloader--hidden');
+            document.body.classList.remove('preloader-active');
+
+            // Полностью удаляем из DOM после анимации
+            setTimeout(function() {
+                preloader.remove();
+            }, 500);
+        }, 300);
+    });
+
+    // Fallback: принудительно скрываем через 10 секунд
+    setTimeout(function() {
+        if (preloader && !preloader.classList.contains('preloader--hidden')) {
+            preloader.classList.add('preloader--hidden');
+            document.body.classList.remove('preloader-active');
+            setTimeout(function() {
+                preloader.remove();
+            }, 500);
+        }
+    }, 10000);
+})();
+
+/**
  * Main JavaScript for Metal Workshop Landing Page
  */
 

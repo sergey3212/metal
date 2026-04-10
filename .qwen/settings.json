@@ -19,7 +19,8 @@
       "Bash(\"%f\")",
       "Bash(node *)",
       "Bash(echo.)",
-      "Bash(curl *)"
+      "Bash(curl *)",
+      "Bash(timeout *)"
     ]
   },
   "mcpServers": {
