@@ -5,32 +5,38 @@
     const preloader = document.getElementById('preloader');
     if (!preloader) return;
 
+    const MIN_DISPLAY_TIME = 1500; // Минимум 1.5 секунды
+    const preloaderStartTime = Date.now();
+
     // Блокируем скролл
     document.body.classList.add('preloader-active');
 
-    // Скрываем прелоадер после загрузки всех ресурсов
-    window.addEventListener('load', function() {
-        // Небольшая задержка для гарантии отрисовки
-        setTimeout(function() {
-            preloader.classList.add('preloader--hidden');
-            document.body.classList.remove('preloader-active');
+    function hidePreloader() {
+        if (preloader.classList.contains('preloader--hidden')) return;
 
-            // Полностью удаляем из DOM после анимации
-            setTimeout(function() {
-                preloader.remove();
-            }, 500);
-        }, 300);
-    });
+        const elapsed = Date.now() - preloaderStartTime;
+        const remaining = MIN_DISPLAY_TIME - elapsed;
 
-    // Fallback: принудительно скрываем через 10 секунд
-    setTimeout(function() {
-        if (preloader && !preloader.classList.contains('preloader--hidden')) {
+        if (remaining > 0) {
+            // Ждём оставшееся время
+            setTimeout(hidePreloader, remaining);
+        } else {
             preloader.classList.add('preloader--hidden');
             document.body.classList.remove('preloader-active');
             setTimeout(function() {
                 preloader.remove();
             }, 500);
         }
+    }
+
+    // Скрываем после загрузки всех ресурсов
+    window.addEventListener('load', function() {
+        hidePreloader();
+    });
+
+    // Fallback: принудительно скрываем через 10 секунд
+    setTimeout(function() {
+        hidePreloader();
     }, 10000);
 })();
 
